@@ -22,3 +22,4 @@ node_modules
 *.sw?
 
 /backend/config/countryData/
+/backend/config/invertedIndex/

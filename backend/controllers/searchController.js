@@ -35,18 +35,35 @@ if (!Object.keys(invertedIndex).length) {
     .pipe(iconv.decodeStream("Shift_JIS"))
     .pipe(csvParser());
 
+  let tempIndex = {};
   let rowCount = 0;
   stream.on("data", (row) => {
-    createIndex(row, invertedIndex);
+    createIndex(row, tempIndex);
     rowCount++;
     if (rowCount % 1000 === 0) {
-      fs.writeFileSync(indexFilePath, JSON.stringify(invertedIndex, null, 2));
-      console.log(`Processed ${rowCount} rows and saved intermediate index.`);
+      Object.keys(tempIndex).forEach((token) => {
+        if (!invertedIndex[token]) {
+          invertedIndex[token] = [];
+        }
+        invertedIndex[token] = invertedIndex[token].concat(tempIndex[token]);
+      });
+      tempIndex = {}; // Clear temporary index to free up memory
+      console.log(`Processed ${rowCount} rows.`);
     }
   });
 
   stream.on("end", () => {
+    // Add any remaining data in tempIndex to invertedIndex
+    Object.keys(tempIndex).forEach((token) => {
+      if (!invertedIndex[token]) {
+        invertedIndex[token] = [];
+      }
+      invertedIndex[token] = invertedIndex[token].concat(tempIndex[token]);
+    });
     fs.writeFileSync(indexFilePath, JSON.stringify(invertedIndex, null, 2));
+    console.log(
+      `Processed remaining ${rowCount % 1000} rows and saved final index.`,
+    );
     console.log("Inverted index created and saved to file.");
   });
 

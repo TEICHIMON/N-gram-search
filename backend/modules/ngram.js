@@ -26,7 +26,6 @@ const nGram = (n) => {
     for (let i = 0; i < length; i++) {
       nGrams.push(source.slice(i, i + n));
     }
-    console.log(nGrams);
     return nGrams;
   };
 };
@@ -66,19 +65,23 @@ const createIndex = (row, index) => {
 
 const searchIndex = (query, index) => {
   const tokens = bigram(query);
-  let results = [];
-  tokens.forEach((token) => {
-    if (index[token]) {
-      let values = Object.values(index[token]);
-      values.forEach((value) => {
-        if (Object.values(value).includes("東京町")) {
-          console.log(value);
-        }
-      });
-      console.log(Object.values(index[token].includes("東京町")));
-      results = results.concat(index[token]);
-    }
-  });
+  if (tokens.length === 0) return [];
+
+  // Get initial results for the first token
+  let results = index[tokens[0]] || [];
+
+  // Filter results to ensure all tokens are present
+  for (let i = 1; i < tokens.length; i++) {
+    results = results.filter((result) => {
+      return (
+        index[tokens[i]] &&
+        index[tokens[i]].some((entry) => {
+          return entry["郵便番号"] === result["郵便番号"];
+        })
+      );
+    });
+  }
+
   return results;
 };
 
