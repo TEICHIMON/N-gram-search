@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const port = process.env.PORT || 3000;
 const createError = require("http-errors");
+const path = require("path");
 
 const app = express();
 app.use(bodyParser.json());
