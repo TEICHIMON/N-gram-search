@@ -15,7 +15,7 @@ const indexFilePath = path.resolve(
 
 //check invertedIndex file
 let invertedIndex = {};
-loadInvertedIndexFile(invertedIndex, indexFilePath);
+invertedIndex = loadInvertedIndexFile(invertedIndex, indexFilePath);
 
 //create invertedIndex file
 if (!Object.keys(invertedIndex).length) {

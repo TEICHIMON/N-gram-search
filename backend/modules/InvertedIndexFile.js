@@ -14,6 +14,7 @@ const loadInvertedIndexFile = (invertedIndex) => {
   if (fs.existsSync(indexFilePath)) {
     invertedIndex = JSON.parse(fs.readFileSync(indexFilePath, "utf-8"));
   }
+  return invertedIndex;
 };
 // Create index if not exists
 const createInvertedIndexFile = (invertedIndex) => {
