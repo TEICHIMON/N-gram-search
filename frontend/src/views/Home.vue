@@ -1,5 +1,5 @@
 <template>
-  <div class="homeView">
+  <div class="homeView w-full">
     <Search />
   </div>
 </template>
