@@ -17,7 +17,6 @@
 ### 3.1.1 リポジトリをローカルにクローンする（GitHub を使用する場合）:
 
 ```bash
-
 git clone git@github.com:TEICHIMON/N-gram-search.git
 ```
 
@@ -53,7 +52,7 @@ GitHub からクローンしたリポジトリの場合、住所情報が含ま�
 npm run backend:start
 ```
 
-注意：**初回起動で** `invertedIndex.json` **ファイルが構築されていない場合、自動的に構築されます。既に構築済みの場合やファイルが存在する場合は再構築されません。**
+注意：**初回起動で** `invertedIndex.json` **ファイルが構築されていない場合、自動的に構築されます。ファイルは backend/config/invertedIndex/ に保存されます。既に構築済みの場合やファイルが存在する場合は再構築されません。**
 
 ### 4.1.2 フロントエンド開発サーバーを起動:
 
@@ -81,7 +80,7 @@ npm run frontend:dev
 npm run backend:start
 ```
 
-注意：**初回起動で** `invertedIndex.json` **ファイルが構築されていない場合、自動的に構築されます。既に構築済みの場合やファイルが存在する場合は再構築されません。**
+注意：**初回起動で** `invertedIndex.json` **ファイルが構築されていない場合、自動的に構築されます。ファイルは backend/config/invertedIndex/ に保存されます。既に構築済みの場合やファイルが存在する場合は再構築されません。**
 
 ### 4.2.2 フロントエンド開発環境のファイルを本番環境用にビルド:
 
