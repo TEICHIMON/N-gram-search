@@ -23,4 +23,3 @@ node_modules
 
 /backend/config/countryData/zenkoku.csv
 /backend/config/invertedIndex/invertedIndex.json
-/frontend/dist/
