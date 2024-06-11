@@ -31,7 +31,6 @@ const nGram = (n) => {
 };
 
 const bigram = nGram(2);
-const trigram = nGram(3);
 
 const createIndex = (row, index) => {
   const fields = [
@@ -85,4 +84,4 @@ const searchIndex = (query, index) => {
   return results;
 };
 
-module.exports = { nGram, bigram, trigram, createIndex, searchIndex };
+module.exports = { nGram, bigram, createIndex, searchIndex };
